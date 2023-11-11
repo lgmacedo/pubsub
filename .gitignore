@@ -34,7 +34,7 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-.env.
+.env
 local.*.env
 testem.txt
 TESTS_*_.js
@@ -42,3 +42,5 @@ TESTS_*_.js
 # misc
 .hgignore
 ._*
+
+storage
