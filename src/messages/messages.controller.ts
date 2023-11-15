@@ -1,4 +1,14 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Res,
+  HttpStatus,
+} from '@nestjs/common';
+import { Response } from 'express';
+
 import { MessagesService } from './messages.service';
 import { NewMessageDTO } from './dtos/new-message.dto';
 
@@ -7,9 +17,12 @@ export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
 
   @Post()
-  publishMessage(@Body() newMessageDTO: NewMessageDTO) {
+  publishMessage(@Res() res: Response, @Body() newMessageDTO: NewMessageDTO) {
     const { queue, message } = newMessageDTO;
     this.messagesService.publish(queue, message);
+    return res
+      .status(HttpStatus.CREATED)
+      .send('Message successfully added to queue');
   }
 
   @Get(':queue')

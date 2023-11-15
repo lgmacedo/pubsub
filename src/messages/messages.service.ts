@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { MessagesRepository } from './messages.repository';
 
 @Injectable()
@@ -10,6 +10,8 @@ export class MessagesService {
   }
 
   getMessages(queue: string): string[] {
-    return this.messagesRepository.get(queue);
+    const messages = this.messagesRepository.get(queue);
+    if (!messages.length) throw new NotFoundException('Queue not found');
+    return messages;
   }
 }

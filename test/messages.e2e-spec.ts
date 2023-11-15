@@ -55,11 +55,10 @@ describe('MessagesController (e2e)', () => {
     );
   });
 
-  it('/messages/:queue (GET) should return an empty array when the requested queue is empty', async () => {
+  it('/messages/:queue (GET) should return a status Code 404 when the requested queue is not found', async () => {
     const getMessageReq = await request(app.getHttpServer()).get(
       `/messages/emptyqueue`,
     );
-    expect(getMessageReq.statusCode).toBe(200);
-    expect(getMessageReq.body).toEqual([]);
+    expect(getMessageReq.statusCode).toBe(404);
   });
 });
