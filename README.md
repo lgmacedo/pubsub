@@ -34,8 +34,7 @@ Também é recomendado criar um arquivo .env na raiz do projeto e declarar nele 
 Para rodar a aplicação:
 
 ```bash
-# development
-$ npm run start
+$ npm start
 
 # watch mode
 $ npm run start:dev
